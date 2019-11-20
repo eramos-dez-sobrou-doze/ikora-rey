@@ -94,17 +94,24 @@
 				<version>3.8.1</version>
 				<configuration>
 					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
-					<diffChangeLogFile>src/main/resources/db/changelog/db.liquibase-diff-changeLog.yaml</diffChangeLogFile>
+					<diffChangeLogFile>target/classes/db/changelog/db.liquibase-diff-changeLog.yaml</diffChangeLogFile>
 					<outputChangeLogFile>src/main/resources/db/changelog/db.liquibase-outputChangeLog.yaml</outputChangeLogFile>
 					<referenceUrl>hibernate:spring:net.eramosdezsobroudoze.destiny.ikorarey.model?dialect=org.hibernate.dialect.H2Dialect</referenceUrl>
 					<driver>org.h2.Driver</driver>
 					<url>jdbc:h2:mem:test.db</url>
 					<username>sa</username>
 					<password></password>
-					<!--<propertyFile>src/main/resources/liquibase.yaml</propertyFile>-->
-					<verbose>true</verbose>
 					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
 				</configuration>
+				<executions>
+					<execution>
+						<id>generate-changelogs</id>
+						<goals>
+							<goal>diff</goal>
+						</goals>
+						<phase>process-test-resources</phase>
+					</execution>
+				</executions>
 				<dependencies>
 					<dependency>
 						<groupId>com.h2database</groupId>
