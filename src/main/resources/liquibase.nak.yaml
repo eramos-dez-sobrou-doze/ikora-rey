@@ -1,0 +1,13 @@
+contexts: ${liquibase.contexts}
+driver: org.h2.Driver
+url: jdbc:h2:nio:./target/test.db
+username: sa
+password:
+verbose: true
+dropFirst: false
+
+changeLogFile: src/main/resources/db.changelog/changelog-master.yaml
+outputChangeLogFile: src/main/resources/db.changelog/liquibase-outputChangeLog.yaml
+diffChangeLogFile: src/main/resources/db.changelog/liquibase-diff-changeLog.yaml
+referenceUrl: hibernate:spring:net.eramosdezsobroudoze.destiny.ikorarey.model?dialect=org.hibernate.dialect.H2Dialect
+#referenceUrl: hibernate:spring:net.eramosdezsobroudoze.destiny.ikorarey.model?dialect=org.hibernate.dialect.H2Dialect
