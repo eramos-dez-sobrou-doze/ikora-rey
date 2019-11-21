@@ -115,23 +115,15 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
         registration.setOrder(-100);
         return registration;
     }
-/*
+
     @Bean
-    @Primary
     public OAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest> accessTokenResponseClient(){
         DefaultAuthorizationCodeTokenResponseClient accessTokenResponseClient = new DefaultAuthorizationCodeTokenResponseClient();
         accessTokenResponseClient.setRequestEntityConverter(customRequestEntityConverter);
-
-        OAuth2AccessTokenResponseHttpMessageConverter tokenResponseHttpMessageConverter = new OAuth2AccessTokenResponseHttpMessageConverter();
-        RestTemplate restTemplate = new RestTemplate(Arrays.asList(new FormHttpMessageConverter(), tokenResponseHttpMessageConverter));
-        restTemplate.setErrorHandler(new OAuth2ErrorResponseErrorHandler());
-
-        accessTokenResponseClient.setRestOperations(restTemplate);
         return accessTokenResponseClient;
     }
 
     @Bean
-    @Primary
     public AuthorizationCodeAccessTokenProvider authorizationCodeAccessTokenProvider() {
         final AuthorizationCodeAccessTokenProvider provider = new AuthorizationCodeAccessTokenProvider();
         provider.setAuthorizationRequestEnhancer(new RequestEnhancer() {
@@ -143,5 +135,5 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
         });
         return provider;
     }
-*/
+
 }
