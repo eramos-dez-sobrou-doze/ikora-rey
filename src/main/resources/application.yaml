@@ -15,3 +15,26 @@ spring:
 
   liquibase:
     change-log: classpath:/db/changelog/db.liquibase-diff-changeLog.yaml
+
+bungie:
+  client:
+    clientId: ${CLIENT_ID:CLIENT-ID}
+    clientSecret: ${CLIENT_SECRET:CLIENT-SECRET}
+    accessTokenUri: https://www.bungie.net/platform/app/oauth/token/
+    userAuthorizationUri: https://www.bungie.net/pt-br/OAuth/Authorize
+    tokenName: code
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+    redirectUri: https://localhost:8443/login
+    redirect-uri: https://localhost:8443/login
+    redirectUriTemplate: https://localhost:8443/login
+  resource:
+    userInfoUri: https://www.bungie.net/Platform/User/GetMembershipsForCurrentUser/
+    redirectUri: https://localhost:8443/login
+    redirect-uri: https://localhost:8443/login
+    redirectUriTemplate: https://localhost:8443/login
+  api-key: ${API_KEY:API-KEY}
+
+logging:
+  level:
+    org.springframework.security: DEBUG
