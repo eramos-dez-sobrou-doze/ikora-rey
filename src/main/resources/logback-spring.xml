@@ -25,7 +25,9 @@
     </encoder>
   </appender>
 
-  <root level="INFO">
+  <logger name="com.zaxxer.hikari" level="OFF" additivity="true" />
+
+  <root level="DEBUG">
     <appender-ref ref="FLAT-FILE" />
     <appender-ref ref="STDOUT" />
   </root>
