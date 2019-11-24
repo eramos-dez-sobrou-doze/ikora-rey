@@ -15,3 +15,78 @@ spring:
 
   liquibase:
     change-log: classpath:/db/changelog/db.liquibase-diff-changeLog.yaml
+
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET:GOOGLE_CLIENT_SECRET}
+          github:
+            client-id: your-app-client-id
+            client-secret: your-app-client-secret
+          facebook:
+            client-id: your-app-client-id
+            client-secret: your-app-client-secret
+          okta:
+            client-id: your-app-client-id
+            client-secret: your-app-client-secret
+          bungie:
+            registrationId: bungie
+            client-id: ${BUNGIE_CLIENT_ID:CLIENT-ID}
+            client-secret: ${BUNGIE_CLIENT_SECRET:CLIENT-SECRET}
+            api-key: ${BUNGIE_API_KEY:API-KEY}
+            authorization-grant-type: authorization_code
+            redirect-uri: 'https://localhost/login/oauth2/code/bungie'
+        provider:
+          okta:
+            authorization-uri: https://your-subdomain.oktapreview.com/oauth2/v1/authorize
+            token-uri: https://your-subdomain.oktapreview.com/oauth2/v1/token
+            user-info-uri: https://your-subdomain.oktapreview.com/oauth2/v1/userinfo
+            jwk-set-uri: https://your-subdomain.oktapreview.com/oauth2/v1/keys
+          bungie:
+            authorization-uri: https://www.bungie.net/pt-br/OAuth/Authorize
+            token-uri: https://www.bungie.net/platform/app/oauth/token/
+            user-info-uri: https://www.bungie.net/Platform//User/GetMembershipsForCurrentUser/
+            jwk-set-uri: https://your-subdomain.oktapreview.com/oauth2/v1/keys
+            #redirect-uri-template: https://localhost:8443/login/{registrationId}
+            redirect-uri-template: https://localhost/login/oauth2/code/{registrationId}
+            user-name-attribute: 0.LastSeenDisplayName
+
+        #registration:
+        #  bungie:
+        #    client-id: ${BUNGIE_CLIENT_ID:CLIENT-ID}
+        #    client-secret: ${BUNGIE_CLIENT_SECRET:CLIENT-SECRET}
+        #    api-key: ${BUNGIE_API_KEY:API-KEY}
+        #    authorization-grant-type: authorization_code
+        #    #redirect-uri-template: https://localhost:8443/login/{registrationId}
+        #    redirectUriTemplate: https://localhost:8443/login/{registrationId}
+        #provider:
+        #  bungie:
+        #    authorization-uri: https://www.bungie.net/pt-br/OAuth/Authorize
+        #    token-uri: https://www.bungie.net/platform/app/oauth/token/
+        #    user-info-uri: https://your-subdomain.oktapreview.com/oauth2/v1/userinfo
+        #    jwk-set-uri: https://your-subdomain.oktapreview.com/oauth2/v1/keys
+
+
+
+server:
+  port: 8080
+  tomcat:
+    internal-proxies: .*
+  use-forward-headers: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: DEBUG
+      apache:
+        catalina:
+          valves:
+            RemoteIpValve: DEBUG
+#    org.springframework.boot.autoconfigure: DEBUG
